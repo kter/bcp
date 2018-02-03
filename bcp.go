@@ -1,61 +1,69 @@
 package main
 
 import (
-  "fmt"
-  "os"
-  // "io/ioutil"
-  // "time"
+	"fmt"
+	"os"
+	// "io/ioutil"
+	// "time"
 
-  "gopkg.in/urfave/cli.v1"
+	"gopkg.in/urfave/cli.v1"
 )
 
 func exists(path string) (bool, error) {
-  _, err := os.Stat(path)
-  if err == nil { return true, nil }
-  if os.IsNotExist(err) { return false, nil }
-  return true, err
+	_, err := os.Stat(path)
+	if err == nil {
+		return true, nil
+	}
+	if os.IsNotExist(err) {
+		return false, nil
+	}
+	return true, err
 }
 
 func main() {
-  app := cli.NewApp()
-  app.Name = "bcp"
-  app.Usage = "bcp backup-file-name"
-  app.Action = func(c *cli.Context) error {
-    fmt.Printf("file %q", c.Args().Get(0))
+	app := cli.NewApp()
+	app.Name = "bcp"
+	app.Usage = "bcp backup-file-name"
+	app.Action = func(c *cli.Context) error {
+		sourceFile := c.Args().Get(0)
+		fmt.Printf("file %q", sourceFile)
 
-    dir, err := os.Getwd()
-    if err != nil {
-      cli.NewExitError("Unable to get current location", 1)
-    }
-    olddir := dir + "/old"
+		dir, err := os.Getwd()
+		if err != nil {
+			cli.NewExitError("Unable to get current location", 1)
+		}
+		fmt.Printf(dir)
+		// olddir := dir + "/old"
 
-    if olddir != true {
-      // mkdir
-    else
-      // prefix set
-    }
+		// if dir != 0 {
+		// 	fmt.Printf("determine prefix number")
+		// } else {
+		// 	fmt.Printf("create new old dir")
+		// }
 
-    prefix := "-01" if prefix := nil
+		// prefix := "-01"
+		// if prefix == nil {
 
-    // now := time.Now()
-    // date :=  now.Format("20060102")
+		// }
 
+		// now := time.Now()
+		// date :=  now.Format("20060102")
 
-    // srcFileName := c.Args()
-    // dstFileName := srcFileName +  +
+		// srcFileName := c.Args()
+		// dstFileName := srcFileName +  +
 
-    // b, err := ioutil.ReadFile("input.txt")
-    // if err != nil {
-    //     panic(err)
-    // }
+		// b, err := ioutil.ReadFile("input.txt")
+		// if err != nil {
+		//     panic(err)
+		// }
 
-    // // write the whole body at once
-    // err = ioutil.WriteFile("output.txt", b, 0644)
-    // if err != nil {
-    //     panic(err)
-    // }
-    return nil
-  }
+		// // write the whole body at once
+		// err = ioutil.WriteFile("output.txt", b, 0644)
+		// if err != nil {
+		//     panic(err)
+		// }
+		return nil
+	}
 
-  app.Run(os.Args)
+	app.Run(os.Args)
 }
