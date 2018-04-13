@@ -1,0 +1,10 @@
+#!/bin/bash
+
+TMPDIR=$(mktemp -d --tmpdir=/tmp)
+pushd $TMPDIR > /dev/null
+
+curl -O -sL https://github.com/kter/bcp/releases/download/v1.0/bcp
+chmod 755 bcp
+mv -f bcp $HOME/bin/
+
+popd > /dev/null
