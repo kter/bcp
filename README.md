@@ -2,7 +2,7 @@
 
 ## Install
 
-run command.
+run command. this copies bcp binaly into $HOME/bin .
 
 ```
 curl -L git.io/installbcp | bash
