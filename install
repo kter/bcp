@@ -1,10 +1,16 @@
 #!/bin/bash
 
+if [ ${UID} -ne 0 ]
+then
+  echo 'This script must be run as root' 1>&2
+  exit 1
+fi
+
 TMPDIR=$(mktemp -d --tmpdir=/tmp)
 pushd $TMPDIR > /dev/null
 
 curl -O -sL https://github.com/kter/bcp/releases/download/v1.0/bcp
 chmod 755 bcp
-mv -f bcp $HOME/bin/
+mv -f bcp /usr/local/bin/
 
 popd > /dev/null
